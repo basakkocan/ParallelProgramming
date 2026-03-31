@@ -1,33 +1,22 @@
-import time
 import tracemalloc
-import functools
+import time
+
 
 def performance(func):
-    """Decorator that measures performance and saves statistics."""
-    
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        # Counter
-        wrapper.counter += 1
-        
-        # Memory tracking
-        tracemalloc.start()
-        
-        # Time tracking
-        start = time.perf_counter()
+    if not hasattr(performance,'counter'):
+        performance.counter = 0
+        performance.total_time = 0
+        performance.total_mem = 0
+
+    def perform(*args,**kwargs):
+        tracemalloc.start()  # start to follow memory
+        start_time = time.time()
         result = func(*args, **kwargs)
-        end = time.perf_counter()
-        
-        _, peak_mem = tracemalloc.get_traced_memory()
-        tracemalloc.stop()
-        
-        wrapper.total_time += (end - start)
-        wrapper.total_mem += peak_mem
-        
+        end_time = time.time()
+        used_memory = tracemalloc.get_traced_memory()[1]  # [0] gives current memory consumption but [1] gives total(max) memory consumption during thr last fallowing time
+        tracemalloc.stop()  # we started memeory following process only to find how much memory uses by thr called function not the entire program ,so we stop memory following when the jop of function is finished
+        performance.counter += 1
+        performance.total_time += end_time - start_time
+        performance.total_mem += used_memory
         return result
-    
-    wrapper.counter = 0
-    wrapper.total_time = 0.0
-    wrapper.total_mem = 0
-    
-    return wrapper
+    return perform
