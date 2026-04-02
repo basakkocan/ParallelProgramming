@@ -1,5 +1,3 @@
-import inspect
-
 custom_power = lambda x=0, /, e=1: x ** e
 
 def custom_equation(x: int = 0, y: int = 0, /, a: int = 1, b: int = 1, *, c: int = 1) -> float:
@@ -28,15 +26,8 @@ def fn_w_counter() -> (int, dict[str, int]):
 
     fn_w_counter.count += 1
 
-    caller_name = inspect.currentframe().f_back.f_globals.get('__name__', '__main__')
-    
-    fn_w_counter.caller_info[caller_name] = fn_w_counter.caller_info.get(caller_name, 0) + 1
 
-    return fn_w_counter.count, fn_w_counter.caller_info
-
-    fn_w_counter.count += 1
-
-    caller_name = inspect.currentframe().f_back.f_globals.get('__name__', '__main__')
+    caller_name = __name__.split('.')[-1]
     
     fn_w_counter.caller_info[caller_name] = fn_w_counter.caller_info.get(caller_name, 0) + 1
 
