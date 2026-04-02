@@ -1,29 +1,29 @@
-def get_unique_items(data):
-    unique_list = []
+def remove_duplicates(seq):
+    unique_values = []
     seen = set()
 
-    for value in data:
-        if value not in seen:
-            unique_list.append(value)
-            seen.add(value)
+    for item in seq:
+        if item not in seen:
+            unique_values.append(item)
+            seen.add(item)
 
-    return unique_list
-
-
-def count_elements(data):
-    result = {}
-
-    for value in data:
-        result[value] = result.get(value, 0) + 1
-
-    return result
+    return unique_values
 
 
-def swap_dict_keys_values(dictionary):
-    new_dict = {}
+def list_counts(seq):
+    counts = {}
 
-    for k in dictionary:
-        v = dictionary[k]
-        new_dict[v] = k
+    for item in seq:
+        counts[item] = counts.get(item, 0) + 1
 
-    return new_dict
+    return counts
+
+
+def reverse_dict(d):
+    flipped = {}
+
+    for key in d:
+        value = d[key]
+        flipped[value] = key
+
+    return flipped
