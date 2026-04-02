@@ -3,12 +3,12 @@ import tracemalloc
 from functools import wraps
 
 class performance:
+    counter = 0
+    total_time = 0.0
+    total_mem = 0
+
     def __init__(self, func):
         self.func = func
-        self.counter = 0
-        self.total_time = 0.0
-        self.total_mem = 0
-        
         wraps(func)(self)
 
     def __call__(self, *args, **kwargs):
@@ -21,8 +21,8 @@ class performance:
         current, peak = tracemalloc.get_traced_memory()
         tracemalloc.stop()
 
-        self.counter += 1
-        self.total_time += (end_time - start_time)
-        self.total_mem += peak
+        performance.counter += 1
+        performance.total_time += (end_time - start_time)
+        performance.total_mem += peak
 
         return result
