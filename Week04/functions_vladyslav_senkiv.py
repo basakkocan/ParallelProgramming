@@ -1,5 +1,3 @@
-from typing import Dict, Tuple
-
 custom_power = lambda x=0, /, e=1: x**e
 
 
@@ -25,7 +23,7 @@ def custom_equation(
     return float((x**a + y**b) / c)
 
 
-def fn_w_counter() -> Tuple[int, Dict[str, int]]:
+def fn_w_counter() -> tuple[int, dict[str, int]]:
     """Count total calls and calls grouped by this module name."""
     if not hasattr(fn_w_counter, "total_calls"):
         fn_w_counter.total_calls = 0
