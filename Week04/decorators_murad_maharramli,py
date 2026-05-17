@@ -5,26 +5,20 @@ from functools import wraps
 def performance(func):
     """
     A decorator that measures the performance of functions and saves statistics.
-    Attributes are stored directly on the 'performance' function object to satisfy test assertions.
     """
     @wraps(func)
     def wrapper(*args, **kwargs):
-        # Increment the global decorator call counter
         performance.counter += 1
         
-        # Start tracking memory and time
         tracemalloc.start()
         start_time = time.perf_counter()
         
-        # Execute the original function
         result = func(*args, **kwargs)
         
-        # Stop tracking and calculate consumed resources
         end_time = time.perf_counter()
         _, peak_mem = tracemalloc.get_traced_memory()
         tracemalloc.stop()
         
-        # Update the global decorator tracking attributes
         performance.total_time += (end_time - start_time)
         performance.total_mem += peak_mem
         
@@ -32,7 +26,7 @@ def performance(func):
 
     return wrapper
 
-# Initialize the required attributes on the decorator itself
+# Initialize the required tracking attributes on the decorator
 performance.counter = 0
 performance.total_time = 0.0
 performance.total_mem = 0
