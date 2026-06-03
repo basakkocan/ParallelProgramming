@@ -18,6 +18,7 @@ def performance(func):
 
         if isinstance(result, list):
             performance.total_mem += sys.getsizeof(result)
+
             for item in result:
                 performance.total_mem += sys.getsizeof(item)
 
