@@ -1,17 +1,17 @@
 import time
-
-class SureOlcer:
-
+class Timer():
     def __init__(self):
-        self.baslangic = None
-        self.bitis = None
-        self.gecen_sure = None
 
+        self.start_time = 0
+
+        self.end_time = 0
     def __enter__(self):
-        self.baslangic = time.perf_counter()  
+
+        self.start_time = time.time()
+
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.bitis = time.perf_counter()
-        self.gecen_sure = self.bitis - self.baslangic
-        print(f"[Zamanlayıcı] İşlem süresi: {self.gecen_sure:.5f} saniye")
+        self.end_time = time.time()
+        self.used_time = self.end_time - self.start_time
+        print(f"Gecen Zaman: ,{self.used_time:.5f},saniye")
