@@ -41,6 +41,8 @@ Coroutines<br>[![Week05 Homework](https://github.com/canbula/ParallelProgramming
 
 Context Managers<br>[![Week06 Homework](https://github.com/canbula/ParallelProgramming/actions/workflows/python-app-week-06.yml/badge.svg)](https://github.com/canbula/ParallelProgramming/actions/workflows/python-app-week-06.yml)
 
+Threads<br>[![Week07 Homework](https://github.com/canbula/ParallelProgramming/actions/workflows/python-app-week-07.yml/badge.svg)](https://github.com/canbula/ParallelProgramming/actions/workflows/python-app-week-07.yml)
+
 # Codes and Videos from Previous Years
 You can switch the **branch** to see the codes from previous years. Also there is a YouTube playlist, 
 which includes the supplementary videos for the course as given in 2021. The videos do not include 
